@@ -10,6 +10,18 @@
 
   <body>
 
+    <script>
+      function drawGraph() {
+        var file = document.getElementById("data");
+        console.log(file);
+      }
+    </script>
+
+    <form action="javascript:drawGraph();">
+      <input id="data" type="file" accept=".txt|.csv">
+      <input type="submit">
+    </form>
+
     <div id="tester" style="width:600px;height:250px;"></div>
     <script>
     	TESTER = document.getElementById('tester');
@@ -18,7 +30,7 @@
     	y: [1, 2, 4, 8, 16] }], {
     	margin: { t: 0 } } );
     </script>
-    
+
   </body>
 
 </html>
