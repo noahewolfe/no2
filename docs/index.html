@@ -16,7 +16,7 @@
         var csvFile = fileInput.files[0];
         //console.log(fileInput.files);
 
-        Plotly.d3.csv(csvFile, function(rows) {
+        Plotly.d3.csv.parse(csvFile, function(rows) {
           var trace = {
             type: "scatter",
             mode: "lines",
