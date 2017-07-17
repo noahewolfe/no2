@@ -24,7 +24,7 @@
         }
 
         function parseFile() {
-          var doesColumnExist = false;
+          console.log("Begin file parse!");
           Plotly.d3.csv.parse(reader.result, function(rows) {
             var trace = {
               type: "scatter",
@@ -46,7 +46,7 @@
                 showgrid: false
               }
             }
-
+            console.log("Finished file parse!");
             Plotly.plot(document.getElementById("tester"), [trace], layout, {showLink: false});
 
           });
