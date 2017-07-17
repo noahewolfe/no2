@@ -12,35 +12,51 @@
 
     <script>
       function drawGraph() {
-        var fileInput = document.getElementById("data");
-        var csvFile = fileInput.files[0];
+
+        var reader = new FileReader();
+
+        function loadFile() {
+          var file = document.getElementById("data").files[0];
+          reader.addEventListener("load", parseFile, false);
+          if (file) {
+            reader.readAsText(file);
+          }
+        }
+
+        function parseFile() {
+          var doesColumnExist = false;
+          Plotly.d3.csv.parse(reader.result, function(rows) {
+            var trace = {
+              type: "scatter",
+              mode: "lines",
+              x: rows.map(function(row) {
+                return row['Time']
+              }),
+              y: rows.map(function(row) {
+                return row['Concentration(ppb)']
+              }),
+              line: {
+                width: 1
+              }
+            };
+
+            var layout = {
+              yaxis: {title: "NO2 Concentration"},
+              xaxis: {
+                showgrid: false
+              }
+            }
+
+            Plotly.plot(document.getElementById("tester"), [trace], layout, {showLink: false});
+
+          });
+        }
+
+        //var fileInput = document.getElementById("data");
+        //var csvFile = fileInput.files[0];
         //console.log(fileInput.files);
 
-        Plotly.d3.csv.parse(csvFile, function(rows) {
-          var trace = {
-            type: "scatter",
-            mode: "lines",
-            x: rows.map(function(row) {
-              return row['Time']
-            }),
-            y: rows.map(function(row) {
-              return row['Concentration(ppb)']
-            }),
-            line: {
-              width: 1
-            }
-          };
 
-          var layout = {
-            yaxis: {title: "NO2 Concentration"},
-            xaxis: {
-              showgrid: false
-            }
-          }
-
-          Plotly.plot(document.getElementById("tester"), [trace], layout, {showLink: false});
-
-        });
       }
     </script>
 
