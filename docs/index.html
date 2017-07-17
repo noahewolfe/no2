@@ -31,7 +31,9 @@
 
       function parseFile() {
         console.log("Begin file parse!");
+        console.log(reader.result);
         Plotly.d3.csv.parse(reader.result, function(rows) {
+          console.dir(rows);
           var trace = {
             type: "scatter",
             mode: "lines",
