@@ -32,7 +32,12 @@
       function parseFile() {
         console.log("Begin file parse!");
         console.log(reader.result);
-        Plotly.d3.csv.parse(reader.result, function(rows) {
+
+        Plotly.d3.csv.parse(reader.result, function(data) {
+          console.log(data);
+        });
+
+        /*Plotly.d3.csv.parse(reader.result, function(rows) {
           console.dir(rows);
           var trace = {
             type: "scatter",
@@ -57,7 +62,7 @@
           console.log("Finished file parse!");
           Plotly.plot(document.getElementById("tester"), [trace], layout, {showLink: false});
 
-        });
+        });*/
       }
 
       //var fileInput = document.getElementById("data");
